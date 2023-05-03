@@ -8,7 +8,6 @@ export default ({ mode }) => {
       "process.env": { ...process.env, ...loadEnv(mode, process.cwd()) },
     },
     server: {
-      https: true,
       port: 3000,
     },
   });
