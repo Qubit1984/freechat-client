@@ -88,9 +88,9 @@ const ChatMessage = forwardRef(function ChatMessage(
         <Text className={fromSelf ? "self" : null}>
           <Image src={imageSrc} alt="image loading" ref={imageRef} />
         </Text>
-      ) : (
+      ) : message ? (
         <Text className={fromSelf ? "self" : null}>{message}</Text>
-      )}
+      ) : null}
       <MessageDetail>
         {readers.length > 0 && fromSelf && (
           <Status>Read {isRoom && readers.length}</Status>
@@ -105,7 +105,7 @@ ChatMessage.propTypes = {
   sender: PropTypes.string.isRequired,
   avatarImage: PropTypes.string.isRequired,
   _id: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
   updatedAt: PropTypes.string.isRequired,
   readers: PropTypes.array.isRequired,
 };
