@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import { useChatContext } from '../../context/ChatContext';
-import ChatMessage from '../Chat/ChatMessage';
+import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import { useChatContext } from "../../context/ChatContext";
+import ChatMessage from "../Chat/ChatMessage";
 
 function ChatRoomMessage({ chatMessages, messageLoading }) {
   const { chatId } = useChatContext();
-
   const msgRef = useRef(null);
 
   useEffect(() => {
@@ -15,12 +14,21 @@ function ChatRoomMessage({ chatMessages, messageLoading }) {
     }
   }, [chatMessages]);
 
-  const renderedMessage = chatMessages.map((msg) => {
-    return <ChatMessage key={msg._id} {...msg} ref={msgRef} />;
+  const renderedMessage = chatMessages.map((msg, index) => {
+    const isLastMessage = index === chatMessages.length - 1 && msg.imageUrl;
+    return (
+      <ChatMessage
+        key={msg._id}
+        {...msg}
+        ref={msgRef}
+        isLastMessage={isLastMessage}
+      />
+    );
   });
 
+  //console.log(chatMessages);*/
   return (
-    <RoomMessage>
+    <RoomMessage id="Room">
       {chatId ? (
         messageLoading ? (
           <RoomEmptyMessage>Loading...</RoomEmptyMessage>
@@ -38,7 +46,7 @@ function ChatRoomMessage({ chatMessages, messageLoading }) {
 
 ChatRoomMessage.propTypes = {
   chatMessages: PropTypes.array,
-  messageLoading: PropTypes.bool
+  messageLoading: PropTypes.bool,
 };
 
 const RoomMessage = styled.div`
