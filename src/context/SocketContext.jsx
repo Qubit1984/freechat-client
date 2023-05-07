@@ -1,5 +1,11 @@
 import PropTypes from "prop-types";
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+} from "react";
 import { initSocket } from "../socket";
 
 const INIT_SOCKET_STATE = {
