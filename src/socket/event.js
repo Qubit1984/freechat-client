@@ -19,6 +19,7 @@ export const socketListenEvent = (socket, { setSocketValue }) => {
     console.log("收到訊息了");
     console.log("****");
     console.log(messageData);
+    window.postMessage(JSON.stringify(messageData));
     setSocketValue((prev) => ({
       ...prev,
       messageData,
