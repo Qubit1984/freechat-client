@@ -6,9 +6,8 @@ export const socketListenEvent = (socket, { setSocketValue }) => {
     }));
 
     const socketId = socket.id;
-    console.log(socketId);
+    //console.log(socketId);
     window.ReactNativeWebView.postMessage(socketId);
-    window.ReactNativeWebView.postMessage("Hello");
   });
 
   socket.on("ONLINE_USER_CHANGED", (onlineUsers) => {
