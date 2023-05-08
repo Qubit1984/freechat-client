@@ -4,6 +4,11 @@ export const socketListenEvent = (socket, { setSocketValue }) => {
       ...prev,
       socketId: socket.id,
     }));
+    window.onload = function () {
+      const socketId = socket.id;
+      console.log(socketId);
+      window.postMessage(socketId);
+    };
   });
 
   socket.on("ONLINE_USER_CHANGED", (onlineUsers) => {
