@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import Form from '../../components/Form';
-import TextInput from '../../components/TextInput';
-import { PrimaryButton } from '../../components/Button';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { useAxios } from '../../hooks/useAxios';
-import { authAPI } from '../../api';
-import { useAuthContext } from '../../context/AuthContext';
-import { errorToast, warningToast } from '../../utils/toastify';
-import { useSocketContext } from '../../context/SocketContext';
+import React, { useState, useEffect } from "react";
+import Form from "../../components/Form";
+import TextInput from "../../components/TextInput";
+import { PrimaryButton } from "../../components/Button";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useAxios } from "../../hooks/useAxios";
+import { authAPI } from "../../api";
+import { useAuthContext } from "../../context/AuthContext";
+import { errorToast, warningToast } from "../../utils/toastify";
+import { useSocketContext } from "../../context/SocketContext";
 
 function LoginForm() {
   const [formData, setFormData] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
 
   const { setUser, setToken } = useAuthContext();
@@ -33,14 +33,14 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.username || !formData.password) {
-      warningToast('All fields are required!');
+      warningToast("All fields are required!");
       return;
     }
     postLogin(
       {
-        method: 'POST',
+        method: "POST",
         url: authAPI.login,
-        data: { ...formData }
+        data: { ...formData },
       },
       (data) => {
         const { accessToken, ...other } = data.data;
@@ -54,12 +54,12 @@ function LoginForm() {
   const handleInputChange = (e) => {
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form id="login-form" onSubmit={handleSubmit}>
       <FormTitle>Login</FormTitle>
       <TextInput
         type="text"
@@ -77,7 +77,7 @@ function LoginForm() {
         value={formData.password}
         onChange={handleInputChange}
       />
-      <PrimaryButton>{isLoading ? 'Loading...' : 'Login'}</PrimaryButton>
+      <PrimaryButton>{isLoading ? "Loading..." : "Login"}</PrimaryButton>
       <LoginSpan>
         Do not have an account ?
         <Link to="/signup">
