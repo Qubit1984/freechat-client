@@ -65,6 +65,7 @@ function ChatRoom() {
   // socket 收到訊息 -> 更新對話訊息狀態
   useEffect(() => {
     if (messageData) {
+      console.log(messageData);
       console.log("=== socket 收到訊息 ===", messageData);
       // 檢查是否在對話中
       //console.log(messageData);
