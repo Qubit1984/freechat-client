@@ -35,11 +35,9 @@ function SocketContextProvider({ children }) {
       : setSocketValue(INIT_SOCKET_STATE);
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const socketId = socketValue.socketId;
-    // 将 Socket ID 发送给 WebView
-    window.postMessage(socketId);
-  }, [socketValue.socketId]);
+  }, [socketValue.socketId]); */
 
   return (
     <SocketContext.Provider

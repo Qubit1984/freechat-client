@@ -32,9 +32,7 @@ function Home() {
     };
   }, [roomNotify, chatInfo, resetSocketValue]);
 
-  window.addEventListener("load", function () {
-    window.postMessage("Hello from web");
-  });
+ 
   return (
     <OuterWrapper>
       <Wrapper>
